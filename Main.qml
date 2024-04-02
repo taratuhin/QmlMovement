@@ -17,7 +17,8 @@ Window {
             onTriggered: {
                 var component = Qt.createComponent("button.qml")
                 var button = component.createObject(mainWindow)
-                button.show()
+                button.show
+                m_timer.interval = Math.random() * 900 + 100
             }
         }
     }
