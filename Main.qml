@@ -11,7 +11,7 @@ Window {
     Column {
         Timer {
             id: m_timer
-            interval: 1000
+            interval: Math.random() * 900 + 100
             repeat: true
             running: true
             onTriggered: {

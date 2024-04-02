@@ -4,27 +4,20 @@ import QtQuick.Controls
 
 Item {
     id: itm
-    width: 300
-    height: 600
+    width: mainWindow.width
+    height: mainWindow.height
 
     Button {
         id: btn
         width: 20
         height: 20
-        x: Math.random() * 280// + width
+        x: Math.random() * (itm.width - btn.width)
         y: Math.random() * 100
+        hoverEnabled: true
         onClicked: destroy()
 
-        MouseArea {
-            id: mouseArea
-            hoverEnabled: true
-            property bool hovered: false
-
-            onEntered: hovered = true
-        }
-
         function btnMove() {
-            if (hovered)
+            if (btn.hovered)
             {
                 btn.y += 0.5
             }
