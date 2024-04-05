@@ -16,7 +16,6 @@ Window {
             running: true
             onTriggered: {
                 var ccb = compBtn.createObject(mainWindow)
-                ccb.show
                 m_timer.interval = Math.random() * 900 + 100
             }
 
@@ -25,6 +24,7 @@ Window {
 
     Component {
         id: compBtn
+
         Button {
             id: btn
             width: 20
