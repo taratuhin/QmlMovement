@@ -18,7 +18,6 @@ Window {
                 var ccb = compBtn.createObject(mainWindow)
                 m_timer.interval = Math.random() * 900 + 100
             }
-
         }
     }
 
