@@ -33,14 +33,16 @@ Window {
             hoverEnabled: true
             onClicked: destroy()
 
+            property double dy: Math.random()
+
             function btnMove() {
                 if (btn.hovered)
                 {
-                    btn.y += 0.5
+                    btn.y += dy * 2
                 }
                 else
                 {
-                    btn.y += 0.25
+                    btn.y += dy
                 }
 
                 if (btn.y > mainWindow.height)
@@ -53,10 +55,12 @@ Window {
 
             Timer {
                 id: btn_timer
-                interval: Math.random() * 10 + 5
+                interval: 10
                 repeat: true
                 running: true
-                onTriggered: btn.btnMove()
+                onTriggered: {
+                    btn.btnMove()
+                }
             }
         }
     }
