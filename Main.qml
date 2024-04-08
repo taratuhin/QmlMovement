@@ -8,16 +8,14 @@ Window {
     visible: true
     title: qsTr("QmlMovement")
 
-    Column {
-        Timer {
-            id: m_timer
-            interval: Math.random() * 900 + 100
-            repeat: true
-            running: true
-            onTriggered: {
-                var ccb = compBtn.createObject(mainWindow)
-                m_timer.interval = Math.random() * 900 + 100
-            }
+    Timer {
+        id: mTimer
+        interval: Math.random() * 900 + 100
+        repeat: true
+        running: true
+        onTriggered: {
+            var ccb = compBtn.createObject(mainWindow)
+            mTimer.interval = Math.random() * 900 + 100
         }
     }
 
@@ -28,22 +26,13 @@ Window {
             id: btn
             width: 20
             height: 20
-            x: Math.random() * (mainWindow.width - btn.width)
-            y: Math.random() * 100
             hoverEnabled: true
             onClicked: destroy()
 
-            property double dy: Math.random()
+            property double dy: Math.random() % 0.5 + 0.1
 
             function btnMove() {
-                if (btn.hovered)
-                {
-                    btn.y += dy * 2
-                }
-                else
-                {
-                    btn.y += dy
-                }
+                btn.hovered ? btn.y += dy * 2 : btn.y += dy
 
                 if (btn.y > mainWindow.height)
                 {
@@ -51,6 +40,11 @@ Window {
                     mainWindow:color = "Red"
                     btn.destroy()
                 }
+            }
+
+            Component.onCompleted: {
+                btn.x = Math.random() * (mainWindow.width - btn.width)
+                btn.y = Math.random() * 100
             }
 
             Timer {
