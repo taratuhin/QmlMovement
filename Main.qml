@@ -19,6 +19,17 @@ Window {
         }
     }
 
+    Timer {
+        id: btnTimer
+        interval: 10
+        repeat: true
+        running: true
+        signal signalBtnTimer
+        onTriggered: {
+            btnTimer.signalBtnTimer()
+        }
+    }
+
     Component {
         id: compBtn
 
@@ -31,30 +42,23 @@ Window {
 
             property double dy: Math.random() % 0.5 + 0.1
 
-            function btnMove() {
-                btn.hovered ? btn.y += dy * 2 : btn.y += dy
+            Connections {
+                target: btnTimer
+                function onSignalBtnTimer() {
+                    btn.hovered ? btn.y += dy * 2 : btn.y += dy
 
-                if (btn.y > mainWindow.height)
-                {
-                    mainWindow:title = qsTr("Game Over!")
-                    mainWindow:color = "Red"
-                    btn.destroy()
+                    if (btn.y > mainWindow.height)
+                    {
+                        mainWindow:title = qsTr("Game Over!")
+                        mainWindow:color = "Red"
+                        btn.destroy()
+                    }
                 }
             }
 
             Component.onCompleted: {
                 btn.x = Math.random() * (mainWindow.width - btn.width)
                 btn.y = Math.random() * 100
-            }
-
-            Timer {
-                id: btn_timer
-                interval: 10
-                repeat: true
-                running: true
-                onTriggered: {
-                    btn.btnMove()
-                }
             }
         }
     }
