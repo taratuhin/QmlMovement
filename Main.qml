@@ -24,10 +24,6 @@ Window {
         interval: 10
         repeat: true
         running: true
-        signal signalBtnTimer
-        onTriggered: {
-            btnTimer.signalBtnTimer()
-        }
     }
 
     Component {
@@ -44,7 +40,7 @@ Window {
 
             Connections {
                 target: btnTimer
-                function onSignalBtnTimer() {
+                function onTriggered() {
                     btn.hovered ? btn.y += dy * 2 : btn.y += dy
 
                     if (btn.y > mainWindow.height)
